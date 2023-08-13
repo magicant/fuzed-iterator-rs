@@ -21,7 +21,7 @@ tests), pass iterators through `Fuze` to your functions that expect an iterator
 ## Example
 
 ```rust should_panic
-use fuzed_iterator::{Fuze, IteratorExt};
+use fuzed_iterator::IteratorExt;
 let mut iter = (0..3).fuze();
 assert_eq!(iter.next(), Some(0));
 assert_eq!(iter.next(), Some(1));
