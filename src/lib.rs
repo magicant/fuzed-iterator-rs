@@ -38,6 +38,7 @@
 
 #![no_std]
 #![doc = include_str!("../README.md")]
+#![warn(missing_docs)]
 
 /// Iterator wrapper that panics if `next` is called after it returns `None`
 ///
