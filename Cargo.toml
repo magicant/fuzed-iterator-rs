@@ -1,8 +1,10 @@
 [package]
 name = "fuzed-iterator"
-version = "0.1.0"
+version = "1.0.0"
+authors = ["WATANABE Yuki <magicant@wonderwand.net>"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
-[dependencies]
+description = "Iterator wrapper for detecting incorrect use of non-fused iterators"
+repository = "https://github.com/magicant/fuzed-iterator-rs"
+license = "MIT OR Apache-2.0"
+keywords = ["iterator"]
+categories = ["development-tools::debugging", "no-std::no-alloc", "rust-patterns"]
