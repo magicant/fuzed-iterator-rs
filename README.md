@@ -1,6 +1,9 @@
 # Fuzed iterator
 
-<!-- TODO badges -->
+[![fuzed-iterator at crates.io](https://img.shields.io/crates/v/fuzed-iterator.svg)](https://crates.io/crates/fuzed-iterator)
+[![fuzed-iterator at docs.rs](https://docs.rs/fuzed-iterator/badge.svg)](https://docs.rs/fuzed-iterator)
+[![Build status](https://github.com/magicant/fuzed-iterator-rs/actions/workflows/rust.yml/badge.svg)](https://github.com/magicant/fuzed-iterator-rs/actions/workflows/rust.yml)
+[![Changelog](https://img.shields.io/badge/Changelog-gray)](CHANGELOG.md)
 
 `fuzed-iterator` is a Rust library crate that provides a simple iterator wrapper
 that causes a panic if the iterator is used after it has once returned `None`.
