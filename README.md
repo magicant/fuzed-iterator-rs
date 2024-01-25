@@ -24,13 +24,58 @@ tests), pass iterators through `Fuze` to your functions that expect an iterator
 ## Example
 
 ```rust should_panic
-use fuzed_iterator::IteratorExt;
+use fuzed_iterator::IteratorExt as _;
 let mut iter = (0..3).fuze();
 assert_eq!(iter.next(), Some(0));
 assert_eq!(iter.next(), Some(1));
 assert_eq!(iter.next(), Some(2));
 assert_eq!(iter.next(), None);
 iter.next(); // Another `next` call would panic!
+```
+
+```rust should_panic
+/// Collects items from an iterator into a vector, but drops the first item.
+fn drop_first_and_collect<I: IntoIterator<Item = i32>>(i: I) -> Vec<i32> {
+    // This implementation is wrong because `next` may be called again even after it
+    // returned `None`.
+    let mut i = i.into_iter();
+    _ = i.next();
+    i.collect()
+}
+
+// Because of the wrong implementation, this test case would fail with a panic.
+# /*
+#[test]
+# */
+fn test_drop_first_and_collect_with_empty_array() {
+    use fuzed_iterator::IteratorExt as _;
+    let result = drop_first_and_collect([].into_iter().fuze());
+    assert_eq!(result, []);
+}
+# test_drop_first_and_collect_with_empty_array();
+```
+
+```rust
+/// Collects items from an iterator into a vector, but drops the first item.
+fn drop_first_and_collect<I: IntoIterator<Item = i32>>(i: I) -> Vec<i32> {
+    // This is the correct implementation.
+    let mut i = i.into_iter();
+    if i.next().is_none() {
+        return vec![];
+    }
+    i.collect()
+}
+
+// Test passed!
+# /*
+#[test]
+# */
+fn test_drop_first_and_collect_with_empty_array() {
+    use fuzed_iterator::IteratorExt as _;
+    let result = drop_first_and_collect([].into_iter().fuze());
+    assert_eq!(result, []);
+}
+# test_drop_first_and_collect_with_empty_array();
 ```
 
 ## License
