@@ -1,6 +1,6 @@
 [package]
 name = "fuzed-iterator"
-version = "1.0.0"
+version = "1.0.1"
 authors = ["WATANABE Yuki <magicant@wonderwand.net>"]
 edition = "2021"
 description = "Iterator wrapper for detecting incorrect use of non-fused iterators"
