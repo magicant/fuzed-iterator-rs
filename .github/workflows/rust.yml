@@ -18,7 +18,7 @@ jobs:
       RUSTFLAGS: -D warnings
       RUSTDOCFLAGS: -D warnings
     steps:
-    - uses: actions/checkout@v3.7.0
+    - uses: actions/checkout@v7.0.1
     - name: Build
       run: cargo build --verbose
     - name: Run tests
@@ -41,7 +41,7 @@ jobs:
     permissions:
       contents: read
     steps:
-    - uses: actions/checkout@v3.7.0
+    - uses: actions/checkout@v7.0.1
       with:
         persist-credentials: false
     - name: Install gh-actions-lock
