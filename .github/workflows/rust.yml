@@ -18,7 +18,7 @@ jobs:
       RUSTFLAGS: -D warnings
       RUSTDOCFLAGS: -D warnings
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v3.7.0
     - name: Build
       run: cargo build --verbose
     - name: Run tests
@@ -27,7 +27,24 @@ jobs:
       run: cargo doc --verbose
     - name: Formatting
       run: cargo fmt -- --check
-    - uses: giraffate/clippy-action@v1
+    - uses: giraffate/clippy-action@v1.0.1
       with:
         clippy_flags: -- -D warnings
         reporter: github-pr-review
+
+  lockfile:
+
+    runs-on: ubuntu-latest
+
+    env:
+      GH_TOKEN: ${{ github.token }}
+    permissions:
+      contents: read
+    steps:
+    - uses: actions/checkout@v3.7.0
+      with:
+        persist-credentials: false
+    - name: Install gh-actions-lock
+      run: gh extension install github/gh-actions-lock
+    - name: Verify actions.lock
+      run: gh actions-lock --verify
